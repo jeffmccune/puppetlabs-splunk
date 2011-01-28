@@ -39,8 +39,7 @@ define splunk::inputs::receiver(
 
   splunk::fragment { "02_receiverfrag_${name}":
     content     => template('splunk/receiverfrag.erb'),
-    fragment_id => "02_recieverfrag_${name}",
-    app_id      => $app_id,
     config_id   => "inputs",
+    app_id      => $app_id,
   }
 }

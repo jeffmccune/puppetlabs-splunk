@@ -29,7 +29,7 @@ define splunk::inputs::target(
 
   splunk::fragment { "01_${name}_targetfrag":
     content     => template('splunk/targetfrag.erb'),
-    config_file => 'inputs',
+    config_id   => 'inputs',
     app_id      => $app_id,
   }
 }

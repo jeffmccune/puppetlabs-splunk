@@ -31,8 +31,8 @@ class splunk::inputs::ssl(
 
   splunk::fragment { "03_sslfrag":
     content     => template('splunk/sslfrag.erb'),
-    config_file => 'inputs',
     app_id      => $app_id,
+    config_id   => 'inputs',
     ensure      => $enable ? {
       true  => 'present',
       false => 'absent',
