@@ -15,6 +15,6 @@ splunk::inputs::target { 'messages':
 splunk::inputs::target { 'maillog':
     target => '/var/log/maillog';
 }
-splunk::inputs::reciever { '9999':
+splunk::inputs::receiver { '9999':
   receiver => true,
 }
