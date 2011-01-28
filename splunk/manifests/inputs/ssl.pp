@@ -21,12 +21,8 @@ class splunk::inputs::ssl(
   $app_id = 'puppet_managed'
 ) {
 
-  if ! ($ensure == 'present' or $ensure == 'absent') {
-    fail("ensure must be present or absent")
-  }
-
   if ! ($enable == true or $enable == false) {
-    fail("enabled must be present or absent")
+    fail('enable must be true or false')
   }
 
   splunk::fragment { "03_sslfrag":
