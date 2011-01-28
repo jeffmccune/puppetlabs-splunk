@@ -14,7 +14,7 @@
 define splunk::inputs::receiver(
   $ensure   = 'present',
   $enable   = true,
-  $port,
+  $port     = '',
   $receiver = false,
   $app_id   = 'puppet_managed'
   ) {
@@ -29,6 +29,12 @@ define splunk::inputs::receiver(
 
   if ! ($receiver == true or $receiver == false) {
     fail('receiver must be true or false')
+  }
+
+  if ($port == '') {
+    $port_real = $name
+  } else {
+    $port_real = $port
   }
 
   splunk::fragment { "02_receiverfrag_${name}":

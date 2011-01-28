@@ -1,23 +1,20 @@
-class { "splunk::users":
+class { 'splunk::users':
   virtual => false
 }
 
-class { "splunk::package": }
+class { 'splunk::package': }
 
-class { "splunk::service": }
+class { 'splunk::service': }
 
-class { "splunk": }
-class { "splunk::app": }
-class { "splunk::inputs": }
-splunk::inputs::fragment {
-  'messages':
-    target => '/var/log/messages';
-  'maillog':
-    target => '/var/log/maillog',
+class { 'splunk': }
+class { 'splunk::app': }
+class { 'splunk::inputs': }
+splunk::inputs::target { 'messages':
+    target => '/var/log/messages',
 }
-# Needs documentation or receivers and
-# targets could be different defines.
-splunk::inputs::fragment { 'nosecure':
-  port     => '9999',
+splunk::inputs::target { 'maillog':
+    target => '/var/log/maillog';
+}
+splunk::inputs::receiever { '9999':
   receiver => true,
 }
