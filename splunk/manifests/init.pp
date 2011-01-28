@@ -29,16 +29,16 @@ class splunk(
     file { $fragbase:
       ensure => directory,
       mode   => '0700',
-      owner  => 'pupept',
+      owner  => 'puppet',
       group  => 'puppet',
     }
   }
 
   file { $fragpath:
-    ensure => directory,
-    owner  => puppet,
-    group  => puppet,
-    mode   => '0700',
+    ensure  => directory,
+    owner   => 'puppet',
+    group   => 'puppet',
+    mode    => '0700',
     purge   => true,
     recurse => true,
   }
