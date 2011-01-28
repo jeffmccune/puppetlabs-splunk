@@ -18,10 +18,10 @@
 #
 
 define splunk::fragment(
-  $ensure = 'present',
+  $ensure      = 'present',
+  $fragment_id = '',
   $config_id,
   $app_id,
-  $fragment_id = '',
   $content
 ) {
 
