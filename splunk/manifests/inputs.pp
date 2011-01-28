@@ -25,6 +25,7 @@ class splunk::inputs(
   }
 
   file { "${splunk::app::apppath}/default/inputs.conf":
+    source  => "${splunk::fragpath}/${app_id}/inputs",
     mode    => '0644',
     owner   => 'splunk',
     group   => 'splunk',

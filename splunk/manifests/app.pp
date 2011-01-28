@@ -43,10 +43,10 @@ class splunk::app(
   }
 
   file { "${apppath}/default/app.conf":
-      ensure => $ensure,
-      owner  => splunk,
-      group  => splunk,
-      mode   => '0644',
-      content => template('splunk/appconf.erb'),
+    ensure => $ensure,
+    owner  => splunk,
+    group  => splunk,
+    mode   => '0644',
+    content => template('splunk/appconf.erb'),
   }
 }
