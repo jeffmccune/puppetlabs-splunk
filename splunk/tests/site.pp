@@ -10,10 +10,10 @@ class { 'splunk': }
 class { 'splunk::app': }
 class { 'splunk::inputs': }
 class { 'splunk::inputs::ssl':
-  server_cert   => '$SPLUNK_HOME/etc/auth/server.pem',
-  password      => 'password',
-  root_ca       => '$SPLUNK_HOME/etc/auth/cacert.pem',
-  verify_client => false
+  server_cert     => '$SPLUNK_HOME/etc/auth/server.pem',
+  password        => 'password',
+  root_ca         => '$SPLUNK_HOME/etc/auth/cacert.pem',
+  validate_client => false
 }
 splunk::inputs::target { 'messages':
     target => '/var/log/messages',
