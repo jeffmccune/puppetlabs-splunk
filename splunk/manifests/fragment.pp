@@ -29,10 +29,6 @@ define splunk::fragment(
     fail('ensure must be present or absent')
   }
 
-  if ! ($enable == true or $enable == false) {
-    fail('enabled must be present or absent')
-  }
-
   # Need to modify app.pp to set up app specific
   # fragent directories to support this new pattern.
 
