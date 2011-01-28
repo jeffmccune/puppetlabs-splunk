@@ -22,7 +22,7 @@ define splunk::fragment(
   $config_id,
   $app_id,
   $fragment_id = '',
-  $content,
+  $content
 ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
