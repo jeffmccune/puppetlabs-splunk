@@ -18,7 +18,7 @@
 #
 class splunk(
   $fragbase = '/var/lib/puppet/spool'
-  ) {
+) {
 
   $fragpath = "${fragbase}/splunk.d"
 
@@ -29,23 +29,18 @@ class splunk(
     file { $fragbase:
       ensure => directory,
       mode   => '0700',
-      owner  => 'root',
-      group  => 'root',
+      owner  => 'pupept',
+      group  => 'puppet',
     }
   }
 
-  file {
-    [
-      "${fragpath}",
-      "${fragpath}/inputs.d",
-      "${fragpath}/outputs.d",
-    ]:
-      ensure => directory,
-      owner  => root,
-      group  => root,
-      mode   => '0700',
-      purge   => true,
-      recurse => true,
+  file { $fragpath:
+    ensure => directory,
+    owner  => puppet,
+    group  => puppet,
+    mode   => '0700',
+    purge   => true,
+    recurse => true,
   }
 
 }

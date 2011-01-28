@@ -1,7 +1,7 @@
 # Define: splunk::app
 #
-#   Creates the initial app.conf and it's parents directories
-#   for the portion of Splunk being managed by Puppet.
+#   Creates the initial app.conf and it's parents directories for the portion of
+#   Splunk being managed by Puppet.
 #
 #   Cody Herriges <cody@puppetlabs.com>
 #   2011-1-07
@@ -22,11 +22,11 @@ class splunk::app(
   ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
-    fail("ensure must be present or absent")
+    fail('ensure must be present or absent')
   }
 
   if ! ($enable == true or $enable == false) {
-    fail("enable must be true or false")
+    fail('enable must be true or false')
   }
 
   $apppath = "${basepath}/etc/apps/${appname}"

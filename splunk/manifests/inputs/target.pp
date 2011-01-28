@@ -1,9 +1,4 @@
-# Define: splunk::inputs::fragment
-#
-#   Creates target framents that become
-#   entries in inputs.conf as part of the
-#   Splunk App created by Puppet. Entries
-#   included are files to be indexed.
+# Define: splunk::inputs::target
 #
 #   Cody Herriges <cody@puppetlabs.com>
 #   2010-12-22
@@ -17,10 +12,11 @@
 # Sample Usage:
 #
 define splunk::inputs::target(
-  $target    = '',
-  $index     = 'main',
-  $enable    = true,
-  $ensure    = present,
+  $target,
+  $index  = 'main',
+  $enable = true,
+  $ensure = 'present',
+  $app_id = 'puppet_managed'
 ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
@@ -33,6 +29,7 @@ define splunk::inputs::target(
 
   splunk::fragment { "01_${name}_targetfrag":
     content     => template('splunk/targetfrag.erb'),
-    config_file => "inputs",
+    config_file => 'inputs',
+    app_id      => $app_id,
   }
 }

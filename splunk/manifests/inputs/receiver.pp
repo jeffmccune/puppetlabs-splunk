@@ -1,10 +1,4 @@
-# Define: splunk::inputs::fragment
-#
-#   Creates framents that become entries in
-#   inputs.conf as part of the Splunk App
-#   created by Puppet. Entries included are
-#   files to be indexed or ports that
-#   Splunk wil receiver forwarders on.
+# Define: splunk::inputs::receiver
 #
 #   Cody Herriges <cody@puppetlabs.com>
 #   2010-12-22
@@ -17,27 +11,24 @@
 #
 # Sample Usage:
 #
-
-# Split fragment defines into high and low level.
-
 define splunk::inputs::receiver(
-  $enable    = true,
-  $ensure    = present,
+  $ensure   = 'present',
+  $enable   = true,
   $port,
-  $receiver  = false,
-  $app_id     = "puppet_managed"
+  $receiver = false,
+  $app_id   = 'puppet_managed'
   ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
-    fail("ensure must be present or absent")
+    fail('ensure must be present or absent')
   }
 
   if ! ($enable == true or $enable == false) {
-    fail("enabled must be present or absent")
+    fail('enabled must be present or absent')
   }
 
   if ! ($receiver == true or $receiver == false) {
-    fail("receiver must be true or false")
+    fail('receiver must be true or false')
   }
 
   splunk::fragment { "02_receiverfrag_${name}":
