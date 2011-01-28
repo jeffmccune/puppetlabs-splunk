@@ -76,6 +76,7 @@ define splunk::fragment(
       refreshonly => true,
       user        => 'puppet',
       group       => 'puppet',
+    }
   }
 
   # Manage the permissions on the spooled file.
