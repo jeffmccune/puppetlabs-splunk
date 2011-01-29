@@ -15,15 +15,15 @@
 # Sample Usage:
 #
 class splunk::users(
-  $uid_number = "103",
-  $gid_number = "103",
-  $home       = "/opt/splunk",
-  $ensure     = "present",
+  $uid_number = undef,
+  $gid_number = undef,
+  $home       = '/opt/splunk',
+  $ensure     = 'present',
   $virtual    = true
 ) {
 
-  if ! ($ensure == "present" or $ensure == "absent") {
-    fail("ensure must be present or absent")
+  if ! ($ensure == 'present' or $ensure == 'absent') {
+    fail('ensure must be present or absent')
   }
 
   # statements
@@ -32,35 +32,35 @@ class splunk::users(
   # is false, we just realize the virtual resource right here.
   if ($virtual == true or $virtual == false) {
 
-    @user { "splunk":
+    @user { 'splunk':
       ensure  => $ensure,
-      uid     => "${uid_number}",
-      gid     => "${gid_number}",
-      home    => "${home}",
-      shell   => "/bin/bash",
-      comment => "Splunk Server",
+      uid     => $uid_number,
+      gid     => 'splunk',
+      home    => $home,
+      shell   => '/bin/bash',
+      comment => 'Splunk Server',
     }
-    @group { "splunk":
+    @group { 'splunk':
       ensure => $ensure,
-      gid    => "${gid_number}",
+      gid    => $gid_number,
     }
 
   } else {
-    fail("virtual param must be true for false")
+    fail('virtual param must be true for false')
   }
 
   # Now realize the users if necessary.
   if ($virtual == false) {
 
     # Realize the virtual users.
-    User  <| title == "splunk" |>
-    Group <| title == "splunk" |>
+    User  <| title == 'splunk' |>
+    Group <| title == 'splunk' |>
 
     # Check if we're removing, flip the relationship direction.
-    if ($ensure == "present") {
-      Group["splunk"] -> User["splunk"]
-    } elsif ($ensure == "absent") {
-      User["splunk"]  -> Group["splunk"]
+    if ($ensure == 'present') {
+      Group['splunk'] -> User['splunk']
+    } elsif ($ensure == 'absent') {
+      User['splunk']  -> Group['splunk']
     }
 
   } # if

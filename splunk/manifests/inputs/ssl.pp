@@ -25,7 +25,7 @@ class splunk::inputs::ssl(
     fail('enable must be true or false')
   }
 
-  splunk::fragment { "03_sslfrag":
+  splunk::fragment { '03_sslfrag':
     content     => template('splunk/sslfrag.erb'),
     app_id      => $app_id,
     config_id   => 'inputs',

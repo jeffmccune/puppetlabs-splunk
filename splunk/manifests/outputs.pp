@@ -1,9 +1,5 @@
 # Define: splunk::outputs
 #
-#   Brings together all the file fragments
-#   for forwarders into a single outputs.conf
-#   in the defined app.
-#
 #   Cody Herriges <cody@puppetlabs.com>
 #   2011-1-18
 #
@@ -16,25 +12,21 @@
 # Sample Usage:
 #
 class splunk::outputs(
-  $compress    = false,
-  $loadbalance = false
+  $app_id,
 ) {
-  exec { 'rebuild-outputs':
-    command     => "/bin/cat ${splunk::fragpath}/outputs.d/* > ${splunk::app::apppath}/default/outputs.conf",
-    refreshonly => true,
-    subscribe   => [ File["${splunk::app::apppath}/default"], File["${splunk::fragpath}/outputs.d"], ],
+
+  splunk::fragment { '00_header':
+    content   => '# This file is managed by puppet and will be overwritten',
+    config_id => 'outputs',
+    app_id    => $app_id,
   }
 
   file { "${splunk::app::apppath}/default/outputs.conf":
+    source  => "${splunk::fragpath}/${app_id}/outputs",
     mode    => '0644',
-    require => Exec['rebuild-outputs'],
-    owner   => "splunk",
-    group   => "splunk",
-  }
-
-  file {
-    "${splunk::fragpath}/outputs.d/00-header-frag":
-      content => template("splunk/outputhead.erb"),
-      notify  => Exec['rebuild-outputs'],
+    owner   => 'splunk',
+    group   => 'splunk',
+    require => File["${splunk::fragpath}/${app_id}/outputs"],
+    notify  => Service['splunk'],
   }
 }

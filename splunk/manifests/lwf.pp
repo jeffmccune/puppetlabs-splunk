@@ -20,23 +20,23 @@ class splunk::lwf(
   ) {
 
   if ! ($enable == true or $enable == false) {
-    fail("enable must be true or false")
+    fail('enable must be true or false')
   }
 
-  file { "lwf_local":
+  file { 'lwf_local':
       path   => "${basepath}/etc/apps/SplunkLightForwarder/local",
       ensure => directory,
-      owner  => "splunk",
-      group  => "splunk",
-      mode   => "0755",
-      require => Package["splunk"],
+      owner  => 'splunk',
+      group  => 'splunk',
+      mode   => '0755',
+      require => Package['splunk'],
   }
 
-  file { "lwf_appconf":
+  file { 'lwf_appconf':
       path => "${basepath}/etc/apps/SplunkLightForwarder/local/app.conf",
-      content => template("splunk/lwfappconf.erb"),
-      owner  => "splunk",
-      group  => "splunk",
-      mode   => "0644",
+      content => template('splunk/lwfappconf.erb'),
+      owner  => 'splunk',
+      group  => 'splunk',
+      mode   => '0644',
   }
 }

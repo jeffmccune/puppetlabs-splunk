@@ -10,26 +10,26 @@
 #
 # Requires:
 #
-#   Class[splunk::users]
-#   User["splunk"]
+#   Class['splunk::users']
+#   User['splunk']
 #
 # Sample Usage:
 #
 class splunk::package(
-  $pkg_name   = "splunk",
-  $pkg_base   = "",
-  $pkg_file   = "",
+  $pkg_name   = 'splunk',
+  $pkg_base   = '',
+  $pkg_file   = '',
   $has_repo   = true,
-  $ensure     = "present"
+  $ensure     = 'present'
 ) {
   # JJM Note, this should break out to platform specific
   # secondary classes.  They should NOT be subclasses.
 
-  if ! ($ensure == "absent" or $ensure == "present") {
-    fail("ensure param must be 'absent' or 'present'")
+  if ! ($ensure == 'absent' or $ensure == 'present') {
+    fail('ensure param must be absent or present')
   }
 
-  if ($pkg_base == "" and $pkg_file == "" and $has_repo == false) {
+  if ($pkg_base == '' and $pkg_file == '' and $has_repo == false) {
     fail("if you have not put the splunk package in a repo you must provide a pkg_base location and a pkg_file name")
   }
 
@@ -59,7 +59,7 @@ class splunk::package(
   }
 
   # Relationships
-  if ($ensure == "present") {
-    User["splunk"] -> Package["splunk"]
+  if ($ensure == 'present'and defined (User['splunk'])) {
+    User['splunk'] -> Package['splunk']
   }
 }

@@ -20,14 +20,14 @@ define splunk::inputs::target(
 ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
-    fail('ensure must be present or absent')
+    fail("ensure must be present or absent")
   }
 
   if ! ($enable == true or $enable == false) {
-    fail('enabled must be present or absent')
+    fail("enabled must be present or absent")
   }
 
-  splunk::fragment { '01_targetfrag_${name}':
+  splunk::fragment { "01_${name}_targetfrag":
     content     => template('splunk/targetfrag.erb'),
     config_id   => 'inputs',
     app_id      => $app_id,

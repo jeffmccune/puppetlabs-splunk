@@ -16,7 +16,7 @@
 #
 class splunk::app(
   $enable    = true,
-  $ensure    = present,
+  $ensure    = 'present',
   $basepath  = $splunk::users::home,
   $appname   = 'puppet_managed'
   ) {
