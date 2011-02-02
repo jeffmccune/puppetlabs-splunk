@@ -1,5 +1,9 @@
 
-[tcpout]
+<%= case scope.to_s
+  when /globalfrag/ then "[tcpout]"
+  when /groupfrag/ then "[tcpout:#{name}]"
+  when /serverfrag/ then "[tcpout-server://#{name}:#{port}]"
+end -%>
 <%= if default_group != ''
   then "defaultGroup = #{default_group}"
 end -%>
@@ -10,7 +14,7 @@ indexAndForward = <%= index_forward %>
 sendCookedData = <%= send_cooked %>
 compressed = <%= compress %>
 maxQueueSize = <%= max_queue %>
-autoLB = <%= auto_lb %> 
+autoLB = <%= auto_lb %>
 <%= if ssl_cert != ''
   then "sslCertPath = #{ssl_cert}"
 end -%>
