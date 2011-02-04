@@ -12,7 +12,7 @@
 # Sample Usage:
 #
 class splunk::outputs(
-  $app_id
+  $app_id = 'puppet_managed'
 ) {
 
   splunk::fragment { '00_header':
