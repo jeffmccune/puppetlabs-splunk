@@ -14,12 +14,12 @@ class { "splunk": }
 class { "splunk::app": }
 class { "splunk::lwf": }
 class { "splunk::inputs": }
-splunk::inputs::fragment {
+splunk::inputs::target {
   "yum":
     target => "/var/log/yum.log",
 }
-class { "splunk::outputs": }
-splunk::outputs::fragment {
-  "splunk":
-    port => "9999",
-}
+class { "splunk::outputs::global": }
+#splunk::outputs::fragment {
+#  "splunk":
+#    port => "9999",
+#}
