@@ -27,7 +27,7 @@ define splunk::outputs::server(
   $validate_server = false,
   $cn_check        = '',
   $cnalt_check     = '',
-  $port,
+  $port
 ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
