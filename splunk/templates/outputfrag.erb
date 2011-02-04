@@ -1,10 +1,9 @@
 
 <%= case scope.to_s
-  when /globalfrag/ then "[tcpout]"
-  when /groupfrag/ then "[tcpout:#{name}]"
-  when /serverfrag/ then "[tcpout-server://#{name}:#{port}]"
+  when /Splunk::Outputs::Global/ then "[tcpout]"
+  when /Splunk::Outputs::Group/ then "[tcpout:#{name}]"
+  when /Splunk::Outputs::Server/ then "[tcpout-server://#{name}:#{port}]"
 end -%>
-<%= scope.to_s %>
 <%= if default_group != ''
   then "defaultGroup = #{default_group}"
 end -%>
