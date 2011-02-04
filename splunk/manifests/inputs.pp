@@ -18,7 +18,7 @@ class splunk::inputs(
   $app_id = 'puppet_managed'
 ) {
 
-  splunk::fragment { '00_header':
+  splunk::fragment { '00_header_inputs':
 		content   => '# This file is managed by puppet and will be overwritten',
 		config_id => 'inputs',
 		app_id    => $app_id,
