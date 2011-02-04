@@ -14,16 +14,16 @@
 class splunk::outputs::global(
   $ensure          = 'present',
   $app_id          = 'puppet_managed',
-  $default_group   = ''
+  $default_group   = '',
   $enable          = true,
   $index_forward   = false,
   $send_cooked     = true,
   $compress        = false,
   $max_queue       = '1000',
   $auto_lb         = false,
-  $ssl_cert,
+  $ssl_cert        = '',
   $password        = 'password',
-  $root_ca,
+  $root_ca         = '',
   $validate_server = false,
   $cn_check        = '',
   $cnalt_check     = ''
