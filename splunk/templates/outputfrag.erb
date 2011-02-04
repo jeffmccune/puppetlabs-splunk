@@ -28,7 +28,7 @@ end -%>
   then "sslVerifyServerCert = true"
 end -%>
 <%= if validate_server == true and cn_check != ''
-  then "sslCommonNameToCheck = #{cn_check}
+  then "sslCommonNameToCheck = #{cn_check}"
 end -%>
 <%= if validate_server == true and cnalt_check != ''
   then "altCommonNameToCheck = #{cnalt_check}"
