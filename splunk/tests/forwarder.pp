@@ -22,5 +22,9 @@ class { 'splunk::outputs': }
 class { 'splunk::outputs::global': }
 splunk::outputs::server {
   'splunk':
-    port => '9999',
+    port            => '9999',
+    root_ca         => '$SPLUNK_HOME/etc/auth/cacert.pem',
+    ssl_cert        => '$SPLUNK_HOME/etc/auth/server.pem',
+    cn_check        => 'SplunkServerDefaultCert',
+    validate_server => true,
 }

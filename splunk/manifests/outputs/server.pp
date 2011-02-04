@@ -34,7 +34,7 @@ define splunk::outputs::server(
     fail('ensure must be present or absent')
   }
 
-  splunk::fragment { "02_serverfrag_${name}":
+  splunk::fragment { "03_serverfrag_${name}":
     content     => template('splunk/outputfrag.erb'),
     config_id   => 'outputs',
     app_id      => $app_id,
