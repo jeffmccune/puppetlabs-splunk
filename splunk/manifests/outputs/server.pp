@@ -11,7 +11,7 @@
 #
 # Sample Usage:
 #
-class splunk::outputs::server(
+define splunk::outputs::server(
   $ensure          = 'present',
   $app_id          = 'puppet_managed',
   $default_group   = '',
