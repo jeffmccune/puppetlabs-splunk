@@ -34,7 +34,7 @@ class splunk::outputs::global(
   }
 
   splunk::fragment { '01_globalfrag':
-    content     => template('splunk/globalfrag.erb'),
+    content     => template('splunk/outputfrag.erb'),
     config_id   => 'outputs',
     app_id      => $app_id,
   }
