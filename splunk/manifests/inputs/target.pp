@@ -27,7 +27,7 @@ define splunk::inputs::target(
     fail('enabled must be present or absent')
   }
 
-  splunk::fragment { '01_targetfrag_${name}':
+  splunk::fragment { "01_targetfrag_${name}":
     content     => template('splunk/targetfrag.erb'),
     config_id   => 'inputs',
     app_id      => $app_id,

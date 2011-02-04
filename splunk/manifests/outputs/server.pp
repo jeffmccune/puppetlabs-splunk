@@ -1,7 +1,7 @@
-# Define: splunk::inputs::target
+# Define: splunk::outputs::server
 #
 #   Cody Herriges <cody@puppetlabs.com>
-#   2010-12-22
+#   2010-01-28
 #
 # Parameters:
 #
@@ -11,25 +11,31 @@
 #
 # Sample Usage:
 #
-define splunk::inputs::target(
-  $target,
-  $index  = 'main',
-  $enable = true,
-  $ensure = 'present',
-  $app_id = 'puppet_managed'
+class splunk::outputs::server(
+  $ensure          = 'present',
+  $app_id          = 'puppet_managed',
+  $default_group   = '',
+  $enable          = true,
+  $index_forward   = false,
+  $send_cooked     = true,
+  $compress        = false,
+  $max_queue       = '1000',
+  $auto_lb         = false,
+  $ssl_cert        = '',
+  $password        = 'password',
+  $root_ca         = '',
+  $validate_server = false,
+  $cn_check        = '',
+  $cnalt_check     = ''
 ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
-    fail("ensure must be present or absent")
+    fail('ensure must be present or absent')
   }
 
-  if ! ($enable == true or $enable == false) {
-    fail("enabled must be present or absent")
-  }
-
-  splunk::fragment { "01_${name}_targetfrag":
-    content     => template('splunk/targetfrag.erb'),
-    config_id   => 'inputs',
+  splunk::fragment { "02_serverfrag_${name}":
+    content     => template('splunk/outputfrag.erb'),
+    config_id   => 'outputs',
     app_id      => $app_id,
   }
 }
