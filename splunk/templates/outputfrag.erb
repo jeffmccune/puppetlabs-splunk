@@ -4,6 +4,7 @@
   when /groupfrag/ then "[tcpout:#{name}]"
   when /serverfrag/ then "[tcpout-server://#{name}:#{port}]"
 end -%>
+<%= scope.to_s %>
 <%= if default_group != ''
   then "defaultGroup = #{default_group}"
 end -%>
