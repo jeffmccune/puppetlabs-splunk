@@ -19,9 +19,12 @@ splunk::inputs::target {
     target => '/var/log/yum.log',
 }
 class { 'splunk::outputs': }
-class { 'splunk::outputs::global': }
-splunk::outputs::server {
-  'splunk':
+class { 'splunk::outputs::global':
+  default_group => 'my_indexers',
+}
+splunk::outptus::group { 'my_indexers':
+}
+splunk::outputs::server { 'splunk':
     port            => '9999',
     root_ca         => '$SPLUNK_HOME/etc/auth/cacert.pem',
     ssl_cert        => '$SPLUNK_HOME/etc/auth/server.pem',
