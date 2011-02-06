@@ -22,7 +22,7 @@ class { 'splunk::outputs': }
 class { 'splunk::outputs::global':
   default_group => 'my_indexers',
 }
-splunk::outptus::group { 'my_indexers':
+splunk::outputs::group { 'my_indexers':
 }
 splunk::outputs::server { 'splunk':
     port            => '9999',
