@@ -14,7 +14,6 @@
 define splunk::outputs::group(
   $ensure          = 'present',
   $app_id          = 'puppet_managed',
-  $default_group   = '',
   $enable          = true,
   $index_forward   = false,
   $send_cooked     = true,
@@ -27,7 +26,6 @@ define splunk::outputs::group(
   $validate_server = false,
   $cn_check        = '',
   $cnalt_check     = '',
-  $port
 ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
