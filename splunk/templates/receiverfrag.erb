@@ -1,3 +1,6 @@
 
 <%= "# The following reciever is created from the #{name} splunk::inputs::receiver resource." %>
-<%= "[splunktcp://#{port_real}]" %>
+<%= if ssl == true
+  then "[splunktcp://#{port_real}]\n"
+  else "[splunktcp-ssl://#{port_real}]\n"
+end -%>

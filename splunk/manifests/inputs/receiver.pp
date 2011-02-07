@@ -16,7 +16,8 @@ define splunk::inputs::receiver(
   $enable   = true,
   $port     = '',
   $receiver = false,
-  $app_id   = 'puppet_managed'
+  $app_id   = 'puppet_managed',
+  $ssl      = false
   ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {

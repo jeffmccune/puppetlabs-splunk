@@ -21,7 +21,7 @@ define splunk::outputs::group(
   $max_queue       = '1000',
   $auto_lb         = false,
   $ssl_cert        = '',
-  $password        = 'password',
+  $password        = '',
   $root_ca         = '',
   $validate_server = false,
   $cn_check        = '',
