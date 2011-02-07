@@ -2,7 +2,7 @@
 [SSL]
 serverCert = <%= server_cert %>
 password = <%= password %>
-RootCA = <%= root_ca %>
+rootCA = <%= root_ca %>
 <%= if dhfile != ''
   then "dhfile = #{dhfile}"
 end -%>
