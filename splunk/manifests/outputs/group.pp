@@ -14,6 +14,7 @@
 define splunk::outputs::group(
   $ensure          = 'present',
   $app_id          = 'puppet_managed',
+  $default_group   = '',
   $enable          = true,
   $index_forward   = false,
   $send_cooked     = true,
