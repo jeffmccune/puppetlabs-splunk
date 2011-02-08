@@ -1,4 +1,4 @@
-# Define: splunk::app
+# Class: splunk::app
 #
 #   Creates the initial app.conf and it's parent directories for the portion of
 #   Splunk being managed by Puppet.
@@ -28,17 +28,17 @@
 #       If you do not control the Splunk user from within Puppet you will need
 #       override this value.
 #
-#   - **appname**
+#   - **app_id**
 #       Name of the Splunk application that Puppet creates.  This can be set
 #       because we plan to evolve this into a dynamic module that can deploy
 #       an arbitrary number of Splunk applications.  If you override this you
 #       need to remember to override if for every other piece of this module
-#       that can take a appname parameter.
+#       that can take a app_id parameter.
 #
 # Requires:
 #
-#   A splunk user created in some fashion.  If you use Puppet then you can
-#   require Class['splunk::users'].
+#   Class['splunk']
+#   User['splunk']
 #
 # Sample Usage:
 #
@@ -48,7 +48,7 @@ class splunk::app(
   $enable    = true,
   $ensure    = 'present',
   $basepath  = $splunk::users::home,
-  $appname   = 'puppet_managed'
+  $app_id    = 'puppet_managed'
   ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
@@ -59,7 +59,7 @@ class splunk::app(
     fail('enable must be true or false')
   }
 
-  $apppath = "${basepath}/etc/apps/${appname}"
+  $apppath = "${basepath}/etc/apps/${app_id}"
 
   $paths = [
       $apppath,
