@@ -25,7 +25,7 @@ define splunk::outputs::group(
   $validate_server = false,
   $cn_check        = '',
   $cnalt_check     = '',
-  $servers         = ''
+  $server          = ''
 ) {
 
   splunk::fragment { "02_groupfrag_${name}":
