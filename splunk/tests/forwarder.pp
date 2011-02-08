@@ -20,12 +20,13 @@ splunk::inputs::target {
 }
 class { 'splunk::outputs': }
 class { 'splunk::outputs::global':
-  default_group => 'my_indexers',
+  default_group => 'indexers',
 }
-splunk::outputs::group { 'my_indexers':
+splunk::outputs::group { 'indexers':
 }
 splunk::outputs::server { 'splunk':
     port            => '9999',
+    password        => 'password',
     root_ca         => '$SPLUNK_HOME/etc/auth/cacert.pem',
     ssl_cert        => '$SPLUNK_HOME/etc/auth/server.pem',
     cn_check        => 'SplunkServerDefaultCert',
