@@ -8,8 +8,9 @@ sendCookedData = <%= send_cooked %>
 compressed = <%= compress %>
 maxQueueSize = <%= max_queue %>
 autoLB = <%= auto_lb %>
-<%= if server != ''
+<%= if server.class == Array
   then "server = " + server.join(", ") + "\n"
+  else "server = #{server}\n"
 end -%>
 <%= if ssl_cert != ''
   then "sslCertPath = #{ssl_cert}\n"
