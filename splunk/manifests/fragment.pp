@@ -5,18 +5,49 @@
 #   formatted and provided by a higher level define that is more narrowly
 #   focused to produce a specific config file block.
 #
-#   Cody Herriges <cody@puppetlabs.com>
-#   2010-12-22
+# License:
+#
+#   Licensed under Apache 2.0.  Full license text can be found in LICENSE which
+#   is shipped as part of this module, in it's root directory.
 #
 # Parameters:
 #
-# Actions:
+# - **ensure**
+#     This controls the creation of the file resource fragment.  If you set
+#     this to absent you won't actually generate any fragments and so not
+#     actually create a final config file.
+#
+# - **fragment_id**
+#     This id is part of what dynamically generates the names of our fragments
+#     and we use conditions from with in this define to set it automatically.
+#     It will be set to $name unless you pass in a fragment_id from the the
+#     parent defined resource.
+#
+# - **config_id**
+#     We split up our fragments directories by which final config file they will
+#     create.
+#
+# - **app_id**
+#     This ties the fragment to a specific Splunk application which in turn
+#     determines where the fragment will be placed in the fragment spool
+#     directory structure.
+#
+# - **content**
+#     What actully gets put in the fragment.  This is indended to be handed
+#     to us from another collection, define or class.
 #
 # Requires:
 #
+#   Class['splunk']
+#
 # Sample Usage:
 #
-
+#   splunk::fragment { "03_serverfrag_${name}":
+#     content     => template('splunk/serverfrag.erb'),
+#     config_id   => 'outputs',
+#     app_id      => $app_id,
+#   }
+#
 define splunk::fragment(
   $ensure      = 'present',
   $fragment_id = '',
@@ -28,9 +59,6 @@ define splunk::fragment(
   if ! ($ensure == 'present' or $ensure == 'absent') {
     fail('ensure must be present or absent')
   }
-
-  # Need to modify app.pp to set up app specific
-  # fragent directories to support this new pattern.
 
   if ($fragment_id == '') {
     $fragment_id_real = $name
