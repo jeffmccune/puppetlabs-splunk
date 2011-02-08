@@ -26,7 +26,8 @@ define splunk::outputs::group(
   $root_ca         = '',
   $validate_server = false,
   $cn_check        = '',
-  $cnalt_check     = ''
+  $cnalt_check     = '',
+  $servers         = ''
 ) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
