@@ -12,9 +12,7 @@
 # Sample Usage:
 #
 define splunk::outputs::group(
-  $ensure          = 'present',
   $app_id          = 'puppet_managed',
-  $default_group   = '',
   $enable          = true,
   $index_forward   = false,
   $send_cooked     = true,
@@ -30,12 +28,8 @@ define splunk::outputs::group(
   $servers         = ''
 ) {
 
-  if ! ($ensure == 'present' or $ensure == 'absent') {
-    fail('ensure must be present or absent')
-  }
-
   splunk::fragment { "02_groupfrag_${name}":
-    content     => template('splunk/outputfrag.erb'),
+    content     => template('splunk/groupfrag.erb'),
     config_id   => 'outputs',
     app_id      => $app_id,
   }

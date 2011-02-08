@@ -12,15 +12,12 @@
 # Sample Usage:
 #
 define splunk::outputs::server(
-  $ensure          = 'present',
   $app_id          = 'puppet_managed',
-  $default_group   = '',
   $enable          = true,
   $index_forward   = false,
   $send_cooked     = true,
   $compress        = false,
   $max_queue       = '1000',
-  $auto_lb         = false,
   $ssl_cert        = '',
   $password        = '',
   $root_ca         = '',
@@ -30,12 +27,8 @@ define splunk::outputs::server(
   $port
 ) {
 
-  if ! ($ensure == 'present' or $ensure == 'absent') {
-    fail('ensure must be present or absent')
-  }
-
   splunk::fragment { "03_serverfrag_${name}":
-    content     => template('splunk/outputfrag.erb'),
+    content     => template('splunk/serverfrag.erb'),
     config_id   => 'outputs',
     app_id      => $app_id,
   }

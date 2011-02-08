@@ -12,7 +12,6 @@
 # Sample Usage:
 #
 class splunk::outputs::global(
-  $ensure          = 'present',
   $app_id          = 'puppet_managed',
   $default_group   = '',
   $enable          = true,
@@ -29,12 +28,8 @@ class splunk::outputs::global(
   $cnalt_check     = ''
 ) {
 
-  if ! ($ensure == 'present' or $ensure == 'absent') {
-    fail('ensure must be present or absent')
-  }
-
   splunk::fragment { '01_globalfrag':
-    content     => template('splunk/outputfrag.erb'),
+    content     => template('splunk/globalfrag.erb'),
     config_id   => 'outputs',
     app_id      => $app_id,
   }
