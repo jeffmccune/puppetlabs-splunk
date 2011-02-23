@@ -1,13 +1,31 @@
 # Define: splunk::inputs::receiver
 #
+#   The high level define used to construct a fragment that will be used as a
+#   receiver of data from a Splunk forwarder.  The data contructed here is
+#   passed onto the splunk::fragment define.
+#
 #   Cody Herriges <cody@puppetlabs.com>
 #   2010-12-22
 #
 # Parameters:
 #
-# Actions:
+# - **ensure**
+#
+# - **enable**
+#
+# - **port**
+#
+# - **app_id**
+#
+# - **ssl**
 #
 # Requires:
+#
+#   Class['splunk']
+#   User['splunk']
+#   Group['splunk']
+#   Class['splunk::inputs']
+#
 #
 # Sample Usage:
 #
@@ -17,7 +35,7 @@ define splunk::inputs::receiver(
   $port     = '',
   $app_id   = 'puppet_managed',
   $ssl      = false
-  ) {
+) {
 
   if ! ($ensure == 'present' or $ensure == 'absent') {
     fail('ensure must be present or absent')

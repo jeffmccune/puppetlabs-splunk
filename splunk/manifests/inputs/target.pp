@@ -1,13 +1,30 @@
 # Define: splunk::inputs::target
 #
+#   The high level define used to construct a fragment that will be used as a
+#   file indexing target in inputs.conf.  The data contructed here is passed
+#   onto the splunk::fragment define.
+#
 #   Cody Herriges <cody@puppetlabs.com>
 #   2010-12-22
 #
 # Parameters:
 #
-# Actions:
+# - **target**
+#
+# - **index**
+#
+# - **enable**
+#
+# - **ensure**
+#
+# - **app_id**
 #
 # Requires:
+#
+#   Class['splunk']
+#   User['splunk']
+#   Group['splunk']
+#   Class['splunk::inputs']
 #
 # Sample Usage:
 #

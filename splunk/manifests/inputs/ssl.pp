@@ -1,13 +1,34 @@
 # Define: splunk::inputs::ssl
 #
+#   The high level define used to construct a fragment that will be used as a
+#   SSL block in a Splunk reciever's inputs.conf  The data contructed here is
+#   passed onto the splunk::fragment define.
+#
 #   Cody Herriges <cody@puppetlabs.com>
 #   2010-12-22
 #
 # Parameters:
 #
-# Actions:
+# - **server_cert**
+#
+# - **password**
+#
+# - **root_ca**
+#
+# - **dhfile**
+#
+# - **validate_client**
+#
+# - **enable**
+#
+# - **app_id**
 #
 # Requires:
+#
+#   Class['splunk']
+#   User['splunk']
+#   Group['splunk']
+#   Class['splunk::inputs']
 #
 # Sample Usage:
 #
