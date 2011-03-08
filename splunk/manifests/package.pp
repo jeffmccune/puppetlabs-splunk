@@ -1,16 +1,25 @@
 # Class: splunk::package
 #
-#   Manage the splunk package.
+#   This functions as a facility for installing the Splunk package.  We do some
+#   stuff as an attempt to extrapolate package providers that are or aren't
+#   central repository based.
 #
 # Parameters:
 #
-# Actions:
+# - **pkg_name**
 #
-#   Installs Splunk from package.
+# - **pkg_base**
+#
+# - **pkg_file**
+#
+# - **has_repo**
+#
+# - **provider**
+#
+# - **ensure**
 #
 # Requires:
 #
-#   Class['splunk::users']
 #   User['splunk']
 #
 # Sample Usage:

@@ -10,7 +10,9 @@ class { 'splunk::package':
 
 class { 'splunk::service': }
 
-class { 'splunk': }
+class { 'splunk':
+  fragbase => '/var/lib/puppet/spool'
+}
 class { 'splunk::app': }
 class { 'splunk::lwf': }
 class { 'splunk::inputs': }

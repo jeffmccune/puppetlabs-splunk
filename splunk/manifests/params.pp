@@ -1,3 +1,9 @@
+# Class: splunk::params
+#
+#   This class is a simple data store.  We are pulling some logic out of other
+#   classes to make the code more clean.  This is a replacement for the future
+#   Puppet Data Library and will be completely replaceable.
+#
 class splunk::params {
   $no_repo_provider = $operatingsystem ? {
     /ubuntu|debian/        => 'dpkg',

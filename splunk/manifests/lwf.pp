@@ -1,23 +1,32 @@
 # Define: splunk::lwf
 #
-#   Turns on the Splunk included Light Weight
-#   Forwarder application.
+#   Turns on the Splunk included Light Weight Forwarder application.
 #
 #   Cody Herriges <cody@puppetlabs.com>
 #   2011-1-25
 #
 # Parameters:
 #
-# Actions:
+# - **enable**
+#     To enable or disable the Light Weight Forwarder application.
+#
+# - **basepath**
+#     Where Splunk is installed.  Defaults to the Splunk user's home directory.
 #
 # Requires:
 #
+#   Package['splunk']
+#   User['splunk']
+#   Group['splunk']
+#
 # Sample Usage:
+#
+#   class { 'splunk::lwf': }
 #
 class splunk::lwf(
   $enable    = true,
   $basepath  = $splunk::users::home
-  ) {
+) {
 
   if ! ($enable == true or $enable == false) {
     fail('enable must be true or false')
