@@ -30,4 +30,4 @@ splunk::inputs::target { 'maillog':
 splunk::inputs::receiver { '9999':
   ssl => true,
 }
-splunk::inputs::reveiver { '9998': }
+splunk::inputs::receiver { '9998': }
