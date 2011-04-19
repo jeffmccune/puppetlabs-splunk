@@ -3,8 +3,9 @@ class { 'splunk::users':
 }
 
 class { 'splunk::package':
-  pkg_base => 'http://192.168.135.1',
-  pkg_file => 'splunk-4.1.6-89596-linux-2.6-x86_64.rpm',
+  require => Class['splunk::users'],
+  pkg_base => 'http://172.16.238.160',
+  pkg_file => 'splunk-4.1.7-95063-linux-2.6-x86_64.rpm',
   has_repo => false,
 }
 
