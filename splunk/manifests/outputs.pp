@@ -21,7 +21,7 @@ class splunk::outputs(
     app_id    => $app_id,
   }
 
-  file { "${splunk::app::apppath}/default/outputs.conf":
+  file { "${splunk::app::apppath}/${app_id}/default/outputs.conf":
     source  => "${splunk::fragpath}/${app_id}/outputs",
     mode    => '0644',
     owner   => 'splunk',

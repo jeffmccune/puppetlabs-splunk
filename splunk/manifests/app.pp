@@ -66,7 +66,7 @@ class splunk::app(
       "${basepath}/etc/",
       "${apppath}",
       "${apppath}/${app_id}",
-      "${apppath}/default",
+      "${apppath}/${app_id}/default",
   ]
 
   file { $paths:
@@ -76,7 +76,7 @@ class splunk::app(
       mode   => '0755',
   }
 
-  file { "${apppath}/default/app.conf":
+  file { "${apppath}/$app_id/default/app.conf":
     ensure => $ensure,
     owner  => 'splunk',
     group  => 'splunk',
