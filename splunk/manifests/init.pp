@@ -28,7 +28,7 @@
 #         fragbase => '/var/lib/puppet/spool',
 #       }
 #
-class splunk(
+class splunk (
   $fragbase = '/var/opt/lib/pe-puppet/spool'
 ) {
 
@@ -40,15 +40,15 @@ class splunk(
     file { $fragbase:
       ensure => directory,
       mode   => '0700',
-      owner  => 'puppet',
-      group  => 'puppet',
+      owner  => root,
+      group  => root,
     }
   }
 
   file { $fragpath:
     ensure  => directory,
-    owner   => 'puppet',
-    group   => 'puppet',
+    owner   => 'root',
+    group   => 'root',
     mode    => '0700',
     purge   => true,
     recurse => true,

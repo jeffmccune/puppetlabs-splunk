@@ -75,8 +75,6 @@ define splunk::fragment(
   if ! defined(File[$local_appdir]) {
     file { $local_appdir:
       ensure => directory,
-      owner  => 'puppet',
-      group  => 'puppet',
       mode   => '0700',
       notify => Exec["rebuild_${app_id}_${config_id}"],
     }
@@ -87,8 +85,6 @@ define splunk::fragment(
       ensure  => directory,
       recurse => true,
       purge   => true,
-      owner   => 'puppet',
-      group   => 'puppet',
       mode    => '0700',
       notify  => Exec["rebuild_${app_id}_${config_id}"],
     }
@@ -98,8 +94,6 @@ define splunk::fragment(
     exec { "rebuild_${app_id}_${config_id}":
       command     => "/bin/cat ${local_fragdir}/* > ${local_appdir}/${config_id}",
       refreshonly => true,
-      user        => 'puppet',
-      group       => 'puppet',
     }
   }
 
@@ -107,8 +101,6 @@ define splunk::fragment(
   if ! defined(File["${local_appdir}/${config_id}"]) {
     file { "${local_appdir}/${config_id}":
       ensure  => file,
-      owner   => 'puppet',
-      group   => 'puppet',
       mode    => '0600',
       require => Exec["rebuild_${app_id}_${config_id}"],
     }
@@ -117,8 +109,6 @@ define splunk::fragment(
   # Manage the fragment.
   file { "${splunk::fragpath}/${app_id}/${config_id}.d/${fragment_id_real}":
     ensure  => $ensure,
-    owner   => 'puppet',
-    group   => 'puppet',
     mode    => '0600',
     content => $content,
     notify  => Exec["rebuild_${app_id}_${config_id}"],

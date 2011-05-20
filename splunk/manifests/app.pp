@@ -59,10 +59,13 @@ class splunk::app(
     fail('enable must be true or false')
   }
 
-  $apppath = "${basepath}/etc/apps/${app_id}"
+  $apppath = "${basepath}/etc/apps"
 
   $paths = [
-      $apppath,
+      "${basepath}",
+      "${basepath}/etc/",
+      "${apppath}",
+      "${apppath}/${app_id}",
       "${apppath}/default",
   ]
 
